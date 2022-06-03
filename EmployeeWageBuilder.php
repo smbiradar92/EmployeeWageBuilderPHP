@@ -18,8 +18,10 @@ class EmployeeWage
         $totalWorkingHours = 0;
         $workingDays = 0;
         $maximumWorkingDays = 20;
+        $maximumWorkingHours = 100;
 
-        while ($workingDays <= $maximumWorkingDays) {             // condition for calculating wages for a month
+        // condition for maxworkingday and Max working hour
+        while ($workingDays < $maximumWorkingDays && $totalWorkingHours < $maximumWorkingHours) {             
             $random = rand(0, 2);                   //random value to check attendence
             echo "Day " . $workingDays . "\n";
             switch ($random) {                       //switch case condition
@@ -49,5 +51,3 @@ class EmployeeWage
 EmployeeWage::welcomeMsg();
 $employee = new EmployeeWage();             //creating class object
 $employee->AttendenceCheck();               //calling function
-
-?>
