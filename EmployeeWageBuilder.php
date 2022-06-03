@@ -13,22 +13,26 @@ class EmployeeWage
 
         $wagePerHour = 20;
         $isPresent = 1;
-        $random = rand(0, 1);                   //random value to check attendence
+        $isPartTime = 2;
+        $random = rand(0, 2);                   //random value to check attendence
         $workingHour = 0;
 
         if ($random == $isPresent) {            //Condition to check Employee Attendence
             echo "Employee is Present\n";
             $workingHour = 8;
-        } else {
+        }elseif($random == $isPartTime){
+            echo "Employee is Parttime\n";
+            $workingHour = 4;
+        }else{
             echo "Employee is Absent\n";
             $workingHour = 0;
         }
 
         //calculation of EmployeeWage
         $dailyEmployeeWage = $wagePerHour * $workingHour;       
-        echo "Employee daily wage is: " . $dailyEmployeeWage;
+        echo "Employee daily wage is : $" . $dailyEmployeeWage;
     }
 }
 EmployeeWage::welcomeMsg();
-$employee = new EmployeeWage();
-$employee->AttendenceCheck();
+$employee = new EmployeeWage();             //creating class object
+$employee->AttendenceCheck();               //calling function
