@@ -88,13 +88,17 @@ class EmployeeWage
         //  EmployeeWage::printArray();         //calling function to print array values
     }
 }
-EmployeeWage::welcomeMsg();                                             //calling function
-$company1 = new EmployeeWage("Wipro", 20, 26, 120);          //caling multiple companies
-echo "---------------wages for company1 ---------------------------\n";
-$company1->printEmployeeWage();
-echo "\n";
+//call emplogeWage objects
+//define array and compute company wage using arrays
+EmployeeWage::welcomeMsg();
+$company1 = new EmployeeWage("Wipro", 20, 26, 120);
 $company2 = new EmployeeWage("HCL", 30, 20, 100);
-echo "---------------wages for company2 ---------------------------\n";
-$company2->printEmployeeWage();
+$company3 = new EmployeeWage("TCS", 40, 25, 80);
+$companyArray = [$company1, $company2, $company3];
+foreach ($companyArray as $company) {
+    echo $company->printEmployeeWage();                     //print employee wage
+    echo "----------------------------------------\n";
+    echo "\n";
+}
 
 ?>
