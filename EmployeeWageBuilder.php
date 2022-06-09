@@ -1,5 +1,5 @@
+
 <?php
-//include 'CompanyDetails.php';
 
 class EmployeeWage
 {
@@ -9,11 +9,11 @@ class EmployeeWage
     const FULL_TIME_HOURS = 8;
     const PART_TIME_HOURS = 4;
 
-    public $maxWorkingDays;
-    public $maxWorkingHours;
-    public $wagePerHour;
+    public $maxWorkingDays = 0;
+    public $maxWorkingHours = 0;
+    public $wagePerHour = 0;
     public $totalWorkingHours = 0;
-    public $workingDays = 0;
+    public $workingDays = 1;
     public $monthlyWage = 0;
     public $workingHours = 0;
     public $array = [];
@@ -23,6 +23,15 @@ class EmployeeWage
     static function welcomeMsg()
     {
         echo "---------Welcome to Employee Wage builder------------\n";
+    }
+
+    public function __construct($companyName, $wagePerHour, $maxWorkingDays, $maxWorkingHours)
+    {
+
+        $this->companyName = $companyName;
+        $this->maxWorkingDays = $maxWorkingDays;
+        $this->maxWorkingHours = $maxWorkingHours;
+        $this->wagePerHour = $wagePerHour;
     }
 
     //function to check employee attendence
@@ -53,11 +62,11 @@ class EmployeeWage
         }
     }
 
-    //parameterised function to calculate employee wage
-    function calculateEmployeeWage($maxWorkingDays, $maxWorkingHours)
+    //function to calculate employee wage
+    function calculateEmployeeWage()
     {
         // condition for maxworkingday and Max working hour
-        while ($this->workingDays < $maxWorkingDays && $this->totalWorkingHours < $maxWorkingHours) {
+        while ($this->workingDays < $this->maxWorkingDays && $this->totalWorkingHours < $this->maxWorkingHours) {
             echo "Day " . $this->workingDays . "\n";
             EmployeeWage::attendenceCheck();            //calling employee attendance function
             //calculating total working hours    
@@ -69,36 +78,23 @@ class EmployeeWage
     }
 
     //function to print employee wage
-    function printEmployeeWage($wagePerHour, $maxWorkingDays, $maxWorkingHours)
+    function printEmployeeWage()
     {
-        EmployeeWage::calculateEmployeeWage($maxWorkingDays, $maxWorkingHours);      //calling function to calculate employee wage
+        EmployeeWage::calculateEmployeeWage();      //calling function to calculate employee wage
         //calculation of EmployeeWage
         echo "Total working Hours = " . $this->totalWorkingHours . "\n";
-        $this->monthlyWage = $this->totalWorkingHours * $wagePerHour;
+        $this->monthlyWage = $this->totalWorkingHours * $this->wagePerHour;
         echo "Employee total monthly wage is : $" . $this->monthlyWage . "\n";
         //  EmployeeWage::printArray();         //calling function to print array values
     }
-
-    function addCompanies()
-    {
-        $companies = [];
-        $num = readline("Please enter the number of companies to be added : ");
-        for ($i = 1; $i <= $num; $i++) {
-            $companyName = readline("Please enter the name of the company: ");
-            echo "wage calculation for the company " . $companyName . "\n";
-            $wagePerHour = readline("Please enter the wage per hour for this company: ");
-            $maxWorkingDays = readline("Please enter the max working days per month: ");
-            $maxWorkingHours = readline("Please enter the max working hour per month: ");
-            $companies[$i] = [$companyName, $wagePerHour, $maxWorkingDays, $maxWorkingHours];
-            EmployeeWage::calculateEmployeeWage($wagePerHour, $maxWorkingDays, $maxWorkingHours);
-            EmployeeWage::printEmployeeWage($wagePerHour, $maxWorkingDays, $maxWorkingHours);
-            $this->workingDays = 0;                                         //make workimg days zero to initiate from zero in next loop
-        }
-    }
 }
-//calling functions
 EmployeeWage::welcomeMsg();                                             //calling function
-$company = new EmployeeWage();
-$company->addCompanies();
+$company1 = new EmployeeWage("Wipro", 20, 26, 120);          //caling multiple companies
+echo "---------------wages for company1 ---------------------------\n";
+$company1->printEmployeeWage();
+echo "\n";
+$company2 = new EmployeeWage("HCL", 30, 20, 100);
+echo "---------------wages for company2 ---------------------------\n";
+$company2->printEmployeeWage();
 
 ?>
