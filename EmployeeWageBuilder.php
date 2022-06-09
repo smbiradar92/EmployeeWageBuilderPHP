@@ -96,6 +96,7 @@ class EmployeeWage
         }
     }
 }
+//calling functions
 EmployeeWage::welcomeMsg();                                             //calling function
 $company = new EmployeeWage();
 $company->addCompanies();
