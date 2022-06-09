@@ -2,24 +2,35 @@
 
 class EmployeeWage
 {
-    const WAGE_PER_HOUR = 20;
+
     const IS_PRESENT = 1;
     const IS_PARTTIME = 2;
     const FULL_TIME_HOURS = 8;
     const PART_TIME_HOURS = 4;
-    const MAX_WORKING_DAYS = 20;
-    const MAX_WORKING_HOURS = 100;
 
+    public $maxWorkingDays = 0;
+    public $maxWorkingHours = 0;
+    public $wagePerHour = 0;
     public $totalWorkingHours = 0;
     public $workingDays = 0;
     public $monthlyWage = 0;
     public $workingHours = 0;
     public $array = [];
+    public $companyName;
 
 
     static function welcomeMsg()
     {
         echo "---------Welcome to Employee Wage builder------------\n";
+    }
+
+    public function __construct($companyName, $wagePerHour, $maxWorkingDays, $maxWorkingHours)
+    {
+
+        $this->companyName = $companyName;
+        $this->maxWorkingDays = $maxWorkingDays;
+        $this->maxWorkingHours = $maxWorkingHours;
+        $this->wagePerHour = $wagePerHour;
     }
 
     //function to check employee attendence
@@ -37,7 +48,7 @@ class EmployeeWage
                 break;
             default:
                 echo "Employee is Absent\n";
-                $this->workingHours = $this->workingHours;
+                $this->workingHours = 0;            //updated values in UC8
         }
     }
 
@@ -54,7 +65,7 @@ class EmployeeWage
     function calculateEmployeeWage()
     {
         // condition for maxworkingday and Max working hour
-        while ($this->workingDays < EmployeeWage::MAX_WORKING_DAYS && $this->totalWorkingHours < employeeWage::MAX_WORKING_HOURS) {
+        while ($this->workingDays < $this->maxWorkingDays && $this->totalWorkingHours < $this->maxWorkingHours) {
             echo "Day " . $this->workingDays . "\n";
             EmployeeWage::attendenceCheck();            //calling employee attendance function
             //calculating total working hours    
@@ -68,17 +79,21 @@ class EmployeeWage
     //function to print employee wage
     function printEmployeeWage()
     {
-
         EmployeeWage::calculateEmployeeWage();      //calling function to calculate employee wage
         //calculation of EmployeeWage
         echo "Total working Hours = " . $this->totalWorkingHours . "\n";
-        $this->monthlyWage = $this->totalWorkingHours * EmployeeWage::WAGE_PER_HOUR;
+        $this->monthlyWage = $this->totalWorkingHours * $this->wagePerHour;
         echo "Employee total monthly wage is : $" . $this->monthlyWage . "\n";
-        EmployeeWage::printArray();         //calling function to print array values
+        //  EmployeeWage::printArray();         //calling function to print array values
     }
 }
-EmployeeWage::welcomeMsg();                 //calling function
-$employee = new EmployeeWage();             //creating class object
-$employee->printEmployeeWage();               //calling function
+EmployeeWage::welcomeMsg();                                             //calling function
+$employee = new EmployeeWage($companyName, $wagePerHour, $maxWorkingDays, $maxWorkingHours);             //creating class object
+$company1 = new EmployeeWage("Wipro", 20, 26, 120);          //caling multiple companies
+$company1->printEmployeeWage();
+echo "---------------------------------";
+$company2 = new EmployeeWage("HCL", 30, 20, 100);
+$company2->printEmployeeWage();
+//$employee->addCompanies();               //calling function
 
 ?>
