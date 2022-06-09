@@ -92,7 +92,7 @@ class EmployeeWage
             $companies[$i] = [$companyName, $wagePerHour, $maxWorkingDays, $maxWorkingHours];
             EmployeeWage::calculateEmployeeWage($wagePerHour, $maxWorkingDays, $maxWorkingHours);
             EmployeeWage::printEmployeeWage($wagePerHour, $maxWorkingDays, $maxWorkingHours);
-            $this->workingDays = 0;
+            $this->workingDays = 0;                                         //make workimg days zero to initiate from zero in next loop
         }
     }
 }
