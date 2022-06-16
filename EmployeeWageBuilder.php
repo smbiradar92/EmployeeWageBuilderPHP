@@ -1,11 +1,13 @@
 
 <?php
 
-class EmployeeWage
+include "IEmployeeWage.php";
+
+class EmployeeWage implements IEmployeeWage
 {
 
     const IS_PRESENT = 1;
-    const IS_PARTTIME = 2;
+    const IS_PARTTIME = 2;  
     const FULL_TIME_HOURS = 8;
     const PART_TIME_HOURS = 4;
 
@@ -80,6 +82,7 @@ class EmployeeWage
     //function to print employee wage
     function printEmployeeWage()
     {
+        echo "Employee Wage for ".$this->companyName."\n";
         EmployeeWage::calculateEmployeeWage();      //calling function to calculate employee wage
         //calculation of EmployeeWage
         echo "Total working Hours = " . $this->totalWorkingHours . "\n";
