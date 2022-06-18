@@ -2,6 +2,7 @@
 <?php
 
 include "IEmployeeWage.php";
+include "CompanyLists.php";
 
 class EmployeeWage implements IEmployeeWage
 {
@@ -93,15 +94,7 @@ class EmployeeWage implements IEmployeeWage
 }
 //call emplogeWage objects
 //define array and compute company wage using arrays
-EmployeeWage::welcomeMsg();
-$company1 = new EmployeeWage("Wipro", 20, 26, 120);
-$company2 = new EmployeeWage("HCL", 30, 20, 100);
-$company3 = new EmployeeWage("TCS", 40, 25, 80);
-$companyArray = [$company1, $company2, $company3];
-foreach ($companyArray as $company) {
-    echo $company->printEmployeeWage();                     //print employee wage
-    echo "----------------------------------------\n";
-    echo "\n";
-}
 
+$empWage = new MultipleCompanies();
+$empWage -> companyArray();
 ?>
