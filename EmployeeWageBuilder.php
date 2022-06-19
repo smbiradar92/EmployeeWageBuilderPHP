@@ -56,8 +56,8 @@ class EmployeeWage implements IEmployeeWage
         }
     }
 
-    //function to print array
-    function printArray()
+    //function to to store daily wage along with total wage
+    function printArray()                                          
     {
         //Printing values from the array
         foreach ($this->array as $this->workingDays => $this->totalWorkingHours) {
