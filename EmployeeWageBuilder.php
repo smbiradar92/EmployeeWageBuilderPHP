@@ -8,7 +8,7 @@ class EmployeeWage implements IEmployeeWage
 {
 
     const IS_PRESENT = 1;
-    const IS_PARTTIME = 2;  
+    const IS_PARTTIME = 2;
     const FULL_TIME_HOURS = 8;
     const PART_TIME_HOURS = 4;
 
@@ -21,7 +21,7 @@ class EmployeeWage implements IEmployeeWage
     public $workingHours = 0;
     public $array = [];
     public $companyName;
-
+    public $dailyWage = 0;
 
     static function welcomeMsg()
     {
@@ -43,26 +43,29 @@ class EmployeeWage implements IEmployeeWage
         $random = rand(0, 3);                   //random value to check attendence
         switch ($random) {                       //switch case condition
             case 1:
-                echo "Employee is Present\n";
-                $this->workingHours = EmployeeWage::FULL_TIME_HOURS;
+                // echo "Employee is Present\n";
+                 $this->workingHours = EmployeeWage::FULL_TIME_HOURS;
                 break;
             case 2:
-                echo "Employee is PartTime\n";
-                $this->workingHours = EmployeeWage::PART_TIME_HOURS;
+                // echo "Employee is PartTime\n";
+                 $this->workingHours = EmployeeWage::PART_TIME_HOURS;
                 break;
             default:
-                echo "Employee is Absent\n";
-                $this->workingHours = 0;            //updated values in UC8
+                // echo "Employee is Absent\n";
+                 $this->workingHours = 0;            //updated values in UC8
         }
+        $this->dailyWage = $this->workingHours * $this->wagePerHour;
+     //   echo "The daily wage of the employee is : " . $this->dailyWage . "\n";
     }
 
-    //function to to store daily wage along with total wage
-    function printArray()                                          
+    //function to store daily wage along with total wage
+    function printArray()
     {
-        //Printing values from the array
-        foreach ($this->array as $this->workingDays => $this->totalWorkingHours) {
-            echo "[Day" . $this->workingDays . "] => " . $this->totalWorkingHours . " Hours \n";
+        //Printing values from the array 
+        foreach ($this->array as $this->workingDays => $this->dailyWage) {
+            echo "[Day" . $this->workingDays . "] => Rs." . $this->dailyWage . " \n";
         }
+        echo "Total monthly wage for the employee is : Rs. " . $this->monthlyWage . "\n";
     }
 
     //function to calculate employee wage
@@ -70,31 +73,40 @@ class EmployeeWage implements IEmployeeWage
     {
         // condition for maxworkingday and Max working hour
         while ($this->workingDays < $this->maxWorkingDays && $this->totalWorkingHours < $this->maxWorkingHours) {
-            echo "Day " . $this->workingDays . "\n";
+           // echo "Day " . $this->workingDays . "\n";
             EmployeeWage::attendenceCheck();            //calling employee attendance function
             //calculating total working hours    
             $this->workingDays++;
             $this->totalWorkingHours = $this->totalWorkingHours + $this->workingHours;            //Adding hours in loop
             //  echo $totalWorkingHours." Hours";
-            $this->array[$this->workingDays] = $this->totalWorkingHours;              //storing working days and total working hours in associative array
+            $this->array[$this->workingDays] = $this->dailyWage;              //storing working days and total working hours in associative array
+        }
+        foreach ($this->array as $this->workingDays => $this->dailyWage) {
+            echo "[Day" . $this->workingDays . "] => Rs." . $this->dailyWage . " \n";
         }
     }
 
     //function to print employee wage
     function printEmployeeWage()
     {
-        echo "Employee Wage for ".$this->companyName."\n";
+        echo "Employee Wage for " . $this->companyName . "\n";
         EmployeeWage::calculateEmployeeWage();      //calling function to calculate employee wage
         //calculation of EmployeeWage
-        echo "Total working Hours = " . $this->totalWorkingHours . "\n";
+        // echo "Total working Hours = " . $this->totalWorkingHours . "\n";
         $this->monthlyWage = $this->totalWorkingHours * $this->wagePerHour;
         echo "Employee total monthly wage is : $" . $this->monthlyWage . "\n";
-        //  EmployeeWage::printArray();         //calling function to print array values
+        // EmployeeWage::printArray();         //calling function to print array values
     }
+
+    // function dailyWage(){
+    //     $this->dailyWage = $this->workingHours * $this->wagePerHour;
+    //     echo "The daily wage of the employee is : ".$this->dailyWage();
+    // }
+
 }
 //call emplogeWage objects
 //define array and compute company wage using arrays
 
 $empWage = new MultipleCompanies();
-$empWage -> companyArray();
+$empWage->companyArray();
 ?>
