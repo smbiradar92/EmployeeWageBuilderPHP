@@ -81,21 +81,22 @@ class EmployeeWage implements IEmployeeWage
             //  echo $totalWorkingHours." Hours";
             $this->array[$this->workingDays] = $this->dailyWage;              //storing working days and total working hours in associative array
         }
-        foreach ($this->array as $this->workingDays => $this->dailyWage) {
-            echo "[Day" . $this->workingDays . "] => Rs." . $this->dailyWage . " \n";
-        }
+       // $this->printArray();
+        // foreach ($this->array as $this->workingDays => $this->dailyWage) {
+        //     echo "[Day" . $this->workingDays . "] => Rs." . $this->dailyWage . " \n";
+        // }
     }
 
     //function to print employee wage
     function printEmployeeWage()
     {
-        echo "Employee Wage for " . $this->companyName . "\n";
+        //echo "Employee Wage for " . $this->companyName . "\n";
         EmployeeWage::calculateEmployeeWage();      //calling function to calculate employee wage
         //calculation of EmployeeWage
         // echo "Total working Hours = " . $this->totalWorkingHours . "\n";
         $this->monthlyWage = $this->totalWorkingHours * $this->wagePerHour;
-        echo "Employee total monthly wage is : $" . $this->monthlyWage . "\n";
-        // EmployeeWage::printArray();         //calling function to print array values
+        //echo "Employee total monthly wage is : $" . $this->monthlyWage . "\n";
+        EmployeeWage::printArray();         //calling function to print array values
     }
 
     // function dailyWage(){
