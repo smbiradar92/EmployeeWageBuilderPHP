@@ -114,8 +114,8 @@ class EmployeeWage implements IEmployeeWage
             foreach ($this->array as $this->workingDays => $this->dailyWage) {
                 echo "[Day" . $this->workingDays . "] => Rs." . $this->dailyWage . " \n";
             }
-            echo "Total monthly wage: Rs. " . $this->monthlyWage . "\n";
-            echo " ]";    
+            echo "Total monthly wage: Rs. " . $this->monthlyWage . " ]";
+             
         }
 
     }
@@ -126,17 +126,21 @@ class EmployeeWage implements IEmployeeWage
 
 }
 //call emplogeWage objects
-$emp1 = new EmployeeWage("Wipro", 25, 26, 100);
-$emp1->empArray();
-echo"\n----------------------------------------------------\n";
-$emp2 = new EmployeeWage("HCL", 30, 26, 80);
-$emp2 ->empArray();
-echo"\n----------------------------------------------------\n";
-$emp3 = new EmployeeWage("TCS", 20, 24, 120);
-$emp3 ->empArray();
-echo"\n----------------------------------------------------\n";
-$array3 = [];
-// $empWage = new MultipleCompanies();
-// $empWage -> companyArray();
+// $emp1 = new EmployeeWage("Wipro", 25, 26, 100);
+// //$emp1->empArray();
+// // echo"\n----------------------------------------------------\n";
+// $emp2 = new EmployeeWage("HCL", 30, 26, 80);
+// // $emp2 ->empArray();
+// // echo"\n----------------------------------------------------\n";
+// $emp3 = new EmployeeWage("TCS", 20, 24, 120);
+// // $emp3 ->empArray();
+// // echo"\n----------------------------------------------------\n";
+// $array3 = [$emp1, $emp2, $emp3];
+// for($i = 0; $i < count($array3); $i++){
+//     $array3[$i]->empArray();
+//     echo"\n----------------------------------------------------\n";
+// }
+$empWage = new MultipleCompanies();
+$empWage -> companyArray();
 
 ?>
