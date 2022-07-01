@@ -20,13 +20,16 @@ class EmployeeWage implements IEmployeeWage
     public $monthlyWage = 0;
     public $workingHours = 0;
     public $array = [];
+    public $array1 = [];
     public $companyName;
     public $dailyWage = 0;
-
+    public $companyArray = [];
     static function welcomeMsg()
     {
         echo "---------Welcome to Employee Wage builder------------\n";
     }
+
+
 
     public function __construct($companyName, $wagePerHour, $maxWorkingDays, $maxWorkingHours)
     {
@@ -35,6 +38,8 @@ class EmployeeWage implements IEmployeeWage
         $this->maxWorkingDays = $maxWorkingDays;
         $this->maxWorkingHours = $maxWorkingHours;
         $this->wagePerHour = $wagePerHour;
+        $this->companyArray = [$this->companyName,$this->wagePerHour, $this->maxWorkingDays, $this->maxWorkingHours];
+
     }
 
     //function to check employee attendence
@@ -96,9 +101,24 @@ class EmployeeWage implements IEmployeeWage
         // echo "Total working Hours = " . $this->totalWorkingHours . "\n";
         $this->monthlyWage = $this->totalWorkingHours * $this->wagePerHour;
         //echo "Employee total monthly wage is : $" . $this->monthlyWage . "\n";
-        EmployeeWage::printArray();         //calling function to print array values
+      //  EmployeeWage::printArray();         //calling function to print array values
     }
 
+    public function empArray(){
+
+        $this->array1[$this->companyName] = $this->companyArray;
+        foreach($this->array1 as $this->companyName => $this->companyArray){
+            EmployeeWage::printEmployeeWage();
+            $this->array[$this->workingDays] = $this->dailyWage;              //storing working days and total working hours in associative array
+            echo "[ ".$this->companyName. "[ \n";
+            foreach ($this->array as $this->workingDays => $this->dailyWage) {
+                echo "[Day" . $this->workingDays . "] => Rs." . $this->dailyWage . " \n";
+            }
+            echo "Total monthly wage: Rs. " . $this->monthlyWage . "\n";
+            echo " ]";    
+        }
+
+    }
     // function dailyWage(){
     //     $this->dailyWage = $this->workingHours * $this->wagePerHour;
     //     echo "The daily wage of the employee is : ".$this->dailyWage();
@@ -106,8 +126,17 @@ class EmployeeWage implements IEmployeeWage
 
 }
 //call emplogeWage objects
-//define array and compute company wage using arrays
+$emp1 = new EmployeeWage("Wipro", 25, 26, 100);
+$emp1->empArray();
+echo"\n----------------------------------------------------\n";
+$emp2 = new EmployeeWage("HCL", 30, 26, 80);
+$emp2 ->empArray();
+echo"\n----------------------------------------------------\n";
+$emp3 = new EmployeeWage("TCS", 20, 24, 120);
+$emp3 ->empArray();
+echo"\n----------------------------------------------------\n";
+$array3 = [];
+// $empWage = new MultipleCompanies();
+// $empWage -> companyArray();
 
-$empWage = new MultipleCompanies();
-$empWage->companyArray();
 ?>
