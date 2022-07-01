@@ -38,8 +38,7 @@ class EmployeeWage implements IEmployeeWage
         $this->maxWorkingDays = $maxWorkingDays;
         $this->maxWorkingHours = $maxWorkingHours;
         $this->wagePerHour = $wagePerHour;
-        $this->companyArray = [$this->companyName,$this->wagePerHour, $this->maxWorkingDays, $this->maxWorkingHours];
-
+        $this->companyArray = [$this->companyName, $this->wagePerHour, $this->maxWorkingDays, $this->maxWorkingHours];
     }
 
     //function to check employee attendence
@@ -49,18 +48,18 @@ class EmployeeWage implements IEmployeeWage
         switch ($random) {                       //switch case condition
             case 1:
                 // echo "Employee is Present\n";
-                 $this->workingHours = EmployeeWage::FULL_TIME_HOURS;
+                $this->workingHours = EmployeeWage::FULL_TIME_HOURS;
                 break;
             case 2:
                 // echo "Employee is PartTime\n";
-                 $this->workingHours = EmployeeWage::PART_TIME_HOURS;
+                $this->workingHours = EmployeeWage::PART_TIME_HOURS;
                 break;
             default:
                 // echo "Employee is Absent\n";
-                 $this->workingHours = 0;            //updated values in UC8
+                $this->workingHours = 0;            //updated values in UC8
         }
         $this->dailyWage = $this->workingHours * $this->wagePerHour;
-     //   echo "The daily wage of the employee is : " . $this->dailyWage . "\n";
+        //   echo "The daily wage of the employee is : " . $this->dailyWage . "\n";
     }
 
     //function to store daily wage along with total wage
@@ -78,7 +77,7 @@ class EmployeeWage implements IEmployeeWage
     {
         // condition for maxworkingday and Max working hour
         while ($this->workingDays < $this->maxWorkingDays && $this->totalWorkingHours < $this->maxWorkingHours) {
-           // echo "Day " . $this->workingDays . "\n";
+            // echo "Day " . $this->workingDays . "\n";
             EmployeeWage::attendenceCheck();            //calling employee attendance function
             //calculating total working hours    
             $this->workingDays++;
@@ -86,7 +85,7 @@ class EmployeeWage implements IEmployeeWage
             //  echo $totalWorkingHours." Hours";
             $this->array[$this->workingDays] = $this->dailyWage;              //storing working days and total working hours in associative array
         }
-       // $this->printArray();
+        // $this->printArray();
         // foreach ($this->array as $this->workingDays => $this->dailyWage) {
         //     echo "[Day" . $this->workingDays . "] => Rs." . $this->dailyWage . " \n";
         // }
@@ -101,23 +100,22 @@ class EmployeeWage implements IEmployeeWage
         // echo "Total working Hours = " . $this->totalWorkingHours . "\n";
         $this->monthlyWage = $this->totalWorkingHours * $this->wagePerHour;
         //echo "Employee total monthly wage is : $" . $this->monthlyWage . "\n";
-      //  EmployeeWage::printArray();         //calling function to print array values
+        //  EmployeeWage::printArray();         //calling function to print array values
     }
 
-    public function empArray(){
+    public function empArray()
+    {
 
         $this->array1[$this->companyName] = $this->companyArray;
-        foreach($this->array1 as $this->companyName => $this->companyArray){
+        foreach ($this->array1 as $this->companyName => $this->companyArray) {
             EmployeeWage::printEmployeeWage();
             $this->array[$this->workingDays] = $this->dailyWage;              //storing working days and total working hours in associative array
-            echo "[ ".$this->companyName. "[ \n";
+            echo "[ " . $this->companyName . "[ \n";
             foreach ($this->array as $this->workingDays => $this->dailyWage) {
                 echo "[Day" . $this->workingDays . "] => Rs." . $this->dailyWage . " \n";
             }
             echo "Total monthly wage: Rs. " . $this->monthlyWage . " ]";
-             
         }
-
     }
     // function dailyWage(){
     //     $this->dailyWage = $this->workingHours * $this->wagePerHour;
@@ -141,6 +139,6 @@ class EmployeeWage implements IEmployeeWage
 //     echo"\n----------------------------------------------------\n";
 // }
 $empWage = new MultipleCompanies();
-$empWage -> companyArray();
+$empWage->companyArray();
 
 ?>
